@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <h3>Sheets 护眼助手</h3>
+    <span id="status-badge" class="badge">已开启</span>
+  </div>
+
+  <!-- 2x2 模式选择器 -->
+  <div class="mode-tabs">
+    <button class="tab-btn" data-mode="day">
+      <span class="icon">☀️</span>白天暖光
+    </button>
+    <button class="tab-btn" data-mode="green">
+      <span class="icon">🍃</span>绿底护眼
+    </button>
+    <button class="tab-btn" data-mode="night">
+      <span class="icon">🌙</span>夜间暗黑
+    </button>
+    <button class="tab-btn" data-mode="off">
+      <span class="icon">⚪</span>原版默认
+    </button>
+  </div>
+
+  <!-- 1. 白天模式面板 -->
+  <div id="panel-day" class="control-panel">
+    <div class="slider-group">
+      <div class="slider-header">
+        <label>减光深度</label>
+        <span id="dayDim-val">20%</span>
+      </div>
+      <input type="range" id="dayDim" min="0" max="50" step="1">
+      <div class="slider-desc">降低刺眼白光，保留清晰字体</div>
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-header">
+        <label>色温暖度</label>
+        <span id="dayWarmth-val">35%</span>
+      </div>
+      <input type="range" id="dayWarmth" min="0" max="60" step="1">
+      <div class="slider-desc">减少蓝光，偏向淡暖羊皮纸色</div>
+    </div>
+  </div>
+
+  <!-- 2. 绿底护眼面板 -->
+  <div id="panel-green" class="control-panel">
+    <div class="slider-group">
+      <div class="slider-header">
+        <label>绿色浓度</label>
+        <span id="greenIntensity-val">70%</span>
+      </div>
+      <input type="range" id="greenIntensity" min="20" max="100" step="1">
+      <div class="slider-desc">经典豆沙绿，吸收刺眼光线</div>
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-header">
+        <label>光照压暗</label>
+        <span id="greenDim-val">10%</span>
+      </div>
+      <input type="range" id="greenDim" min="0" max="40" step="1">
+      <div class="slider-desc">微调绿底流明度，暗光环境更舒适</div>
+    </div>
+  </div>
+
+  <!-- 3. 夜间暗黑面板 -->
+  <div id="panel-night" class="control-panel">
+    <div class="slider-group">
+      <div class="slider-header">
+        <label>暗色柔和度</label>
+        <span id="nightInvert-val">88%</span>
+      </div>
+      <input type="range" id="nightInvert" min="75" max="95" step="1">
+      <div class="slider-desc">微调底色深浅，避免纯黑死色</div>
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-header">
+        <label>画面亮度</label>
+        <span id="nightBrightness-val">92%</span>
+      </div>
+      <input type="range" id="nightBrightness" min="70" max="100" step="1">
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-header">
+        <label>文字对比度</label>
+        <span id="nightContrast-val">92%</span>
+      </div>
+      <input type="range" id="nightContrast" min="75" max="105" step="1">
+    </div>
+  </div>
+
+  <!-- 4. 关闭面板 -->
+  <div id="panel-off" class="control-panel empty-panel">
+    已恢复原生白色高亮界面
+  </div>
+
+  <!-- 生效网站 -->
+  <div class="sites">
+    <div class="sites-title">生效网站</div>
+
+    <div class="current-site">
+      <span id="current-host" class="current-host"></span>
+      <button id="toggle-site" class="mini-btn" hidden></button>
+    </div>
+
+    <ul id="site-list" class="site-list"></ul>
+
+    <div class="add-row">
+      <input type="text" id="site-input" placeholder="添加网站，如 example.com" spellcheck="false">
+      <button id="add-site" class="mini-btn primary">添加</button>
+    </div>
+    <div id="site-msg" class="site-msg" role="status"></div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+/* 护眼遮罩层：高层级、完全穿透、平滑过渡 */
+#gs-eye-protector-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+  z-index: 2147483647 !important;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+/* 夜间暗黑模式：反相 + 色相旋转（保护财务红绿色不颠倒） */
+html.gs-dark-mode-active {
+  filter: invert(var(--gs-dark-invert, 0.88)) 
+          hue-rotate(180deg) 
+          brightness(var(--gs-dark-brightness, 0.95)) 
+          contrast(var(--gs-dark-contrast, 0.92)) !important;
+  background-color: #121212 !important;
+}
+
+/* 避免图表中的嵌入图片、头像等发生多余反相 */
+html.gs-dark-mode-active img,
+html.gs-dark-mode-active video,
+html.gs-dark-mode-active [role="img"],
+html.gs-dark-mode-active .docs-material-gm-dialog {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
